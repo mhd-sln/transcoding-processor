@@ -1,0 +1,23 @@
+services:
+    processor:
+        image: processor
+        build:
+            context: .
+            dockerfile: cmd/process/Dockerfile
+        env_file:
+            - ./.env
+        ports:
+            - 8081:8081
+    prometheus:
+        image: prom/prometheus
+        volumes:
+            - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+            - ./prometheus-data:/prometheus
+        ports:
+            - 9090:9090
+    grafana:
+        image: grafana/grafana
+        volumes:
+            - ./grafana:/var/lib/grafana
+        ports:
+            - 3000:3000

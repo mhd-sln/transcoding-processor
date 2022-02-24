@@ -1,0 +1,5 @@
+minio_store
+.env
+*.mov
+prometheus-data
+grafana
